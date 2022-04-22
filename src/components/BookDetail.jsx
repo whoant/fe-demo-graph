@@ -12,13 +12,6 @@ const BookDetail = props => {
 		skip: bookId === null
 	});
 
-	console.log({
-		loading,
-		error,
-		data,
-		bookId
-	});
-
 	if (loading) return <p>Loading book detail ...</p>;
 	if (error) {
 		console.log(error);
@@ -28,16 +21,15 @@ const BookDetail = props => {
 	const book = bookId !== null ? data.book : null;
 
 	return (
-		<Card bg='info' text='white' className='shadow'>
-			<Card.Body>
-				{book === null ? (
-					<Card.Text>Vui lòng chọn sách</Card.Text>
-				) : (
-					<Fragment>
+		<Card bg='' text='' className='shadow'>
+			{loading ? (
+				<p>Loading author ...</p>
+			) : (
+				<Fragment>
+					<Card.Header>{book.genre}</Card.Header>
+					<Card.Body>
 						<Card.Title>{book.name}</Card.Title>
-						<Card.Subtitle>Thể loại : {book.genre}</Card.Subtitle>
-						<Card.Body>
-
+						<Card.Text>
 							<p>Tác giả: {book.author.name}</p>
 							<p>Tuổi: {book.author.age}</p>
 							<p>Tất cả sách của tác giả này</p>
@@ -46,10 +38,10 @@ const BookDetail = props => {
 									<li key={book.id}>{book.name}</li>
 								))}
 							</ul>
-						</Card.Body>
-					</Fragment>
-				)}
-			</Card.Body>
+						</Card.Text>
+					</Card.Body>
+				</Fragment>
+			)}
 		</Card>
 	);
 };
