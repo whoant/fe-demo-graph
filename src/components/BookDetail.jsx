@@ -19,17 +19,17 @@ const BookDetail = props => {
 	}
 
 	const book = bookId !== null ? data.book : null;
-
+	
 	return (
 		<Card bg='' text='' className='shadow'>
-			{loading ? (
-				<p>Loading author ...</p>
+			{!book ? (
+				<Card.Text>Vui lòng chọn sách !</Card.Text>
 			) : (
 				<Fragment>
 					<Card.Header>{book.genre}</Card.Header>
 					<Card.Body>
 						<Card.Title>{book.name}</Card.Title>
-						<Card.Text>
+						<Card.Body>
 							<p>Tác giả: {book.author.name}</p>
 							<p>Tuổi: {book.author.age}</p>
 							<p>Tất cả sách của tác giả này</p>
@@ -38,7 +38,7 @@ const BookDetail = props => {
 									<li key={book.id}>{book.name}</li>
 								))}
 							</ul>
-						</Card.Text>
+						</Card.Body>
 					</Card.Body>
 				</Fragment>
 			)}
