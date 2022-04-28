@@ -4,6 +4,7 @@ import Book from "./Book";
 import { useQuery } from "@apollo/client";
 import { getBooks } from "../graphql/queries";
 import BookDetail from "./BookDetail";
+import BookCreated from "./BookCreated";
 
 const BookList = () => {
 	const { loading, error, data } = useQuery(getBooks);
@@ -18,8 +19,8 @@ const BookList = () => {
 
 	return (
 		<Row>
-			<Col xs="8">
-				<Row>
+			<Col>
+				<Row xs={8}>
 					{data.books.map(book => (
 						<Col xs="6">
 							<Book book={book} onClickBook={handleOnClickBook}/>
@@ -27,6 +28,9 @@ const BookList = () => {
 					))}
 				</Row>
 			</Col>
+			{/*<Col>*/}
+			{/*	<BookCreated/>*/}
+			{/*</Col>*/}
 			<Col>
 				<BookDetail bookId={bookSelected}/>
 			</Col>
